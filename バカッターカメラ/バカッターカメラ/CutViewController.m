@@ -71,11 +71,12 @@
     //kabeimg = [UIImage imageNamed:@"sakamoto.jpg"];
     
     kabeimg = [[UIImage alloc]initWithCGImage:self.itemImage.CGImage];
+    
     if (kabeimg.size.width > kabeimg.size.height) {
-        NSLog(@"縦:%f\n横:%f",kabeimg.size.height,kabeimg.size.width);
+
         kabeimg = [UIImage imageWithCGImage:kabeimg.CGImage scale:kabeimg.scale orientation:UIImageOrientationRight];
-        NSLog(@"縦:%f\n横:%f",kabeimg.size.height,kabeimg.size.width);
     }
+    
     if (_bgImage.size.width > _bgImage.size.height) {
         _bgImage = [UIImage imageWithCGImage:_bgImage.CGImage scale:_bgImage.scale orientation:UIImageOrientationRight];
     }
@@ -83,7 +84,7 @@
     //[kabeGazo setContentMode:UIViewContentModeScaleAspectFit];
     [kabeGazo setImage:kabeimg];
     [bgView setImage:_bgImage];
-    [bgView setContentMode:UIViewContentModeScaleAspectFit];
+    //[bgView setContentMode:UIViewContentModeScaleAspectFill];
         
     //UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction :)];
     //[kabeGazo addGestureRecognizer:tap];
@@ -294,8 +295,8 @@
         
         if([activeTouches count]==1){
             UITouch *t0 = [activeTouches objectAtIndex:0];
-            CGPoint crntPt = [t0 locationInView:kabeGazo];
-            CGPoint prevPt = [t0 previousLocationInView:kabeGazo];
+            CGPoint crntPt = [t0 locationInView:self.view];
+            CGPoint prevPt = [t0 previousLocationInView:self.view];
             dx = crntPt.x - prevPt.x;
             dy = crntPt.y - prevPt.y;
             dr = 0;

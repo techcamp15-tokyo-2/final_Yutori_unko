@@ -80,6 +80,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //イメージの指定
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     image = [self resizeImage:image withQuality:kCGInterpolationDefault rate:0.5f];
+    
         CutViewController *cutView = [CutViewController new];
         cutView.itemImage = [[UIImage alloc]initWithCGImage:image.CGImage];
         cutView.bgImage = [[UIImage alloc]initWithCGImage:picker.sukeImage.CGImage];
@@ -92,6 +93,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //ビューコントローラのビューを閉じる
     [[pickerCtl presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (UIImage *)resizeImage:(UIImage *)image
              withQuality:(CGInterpolationQuality)quality
                     rate:(CGFloat)rate
